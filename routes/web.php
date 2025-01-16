@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,7 +39,7 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword']);
 Route::prefix('admin')->middleware(['isAdmin'])->group(function () {
     Route::get('dashboard', [AuthController::class, 'showDashboard'])->name('dashboard');
     
-    // quan ly user
+    // quan ly users
     Route::get('users', [UserController::class, 'index'])->name('admin.users.index'); // danh sach user
     Route::get('users/create', [UserController::class, 'create'])->name('admin.users.create');
     Route::post('users', [UserController::class, 'store'])->name('admin.users.store');
@@ -45,6 +47,14 @@ Route::prefix('admin')->middleware(['isAdmin'])->group(function () {
     Route::put('users/{id}', [UserController::class, 'update'])->name('admin.users.update');
     Route::delete('users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
     Route::post('users/{id}/reset-password', [UserController::class, 'resetPassword'])->name('admin.users.reset-password');
+
+    // quan ly shops
+    Route::resource('shops', ShopController::class);
+
+    // quan ly categories
+    Route::resource('categories', CategoryController::class);
+
+
 });
 
 

@@ -45,6 +45,7 @@
             margin-left: 250px;
         }
     </style>
+    @yield('style');
 </head>
 
 <body>
@@ -53,7 +54,9 @@
     <div class="sidebar">
         <h4 class="text-center">Admin Panel</h4>
         <hr>
-        <a href="{{ route('admin.users.index') }}">Quản lý người dùng</a>
+        <a href="{{ route('admin.users.index') }}">Quản lý User</a>
+        <a href="{{ route('shops.index') }}">Quản lý shop</a>
+        <a href="{{ route('categories.index') }}">Quản lý Category</a>
         <a href="#">Quản lý hoạt động</a>
         <a href="#">Báo cáo</a>
         <a href="#">Cài đặt</a>
